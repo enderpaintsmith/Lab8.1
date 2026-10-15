@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Flashcards</title>
+		<link rel="stylesheet" href="styles.css">
+		<script type="module" src="app.js"></script>
+	</head>
+	<body>
+		<header>
+			<h1>Flashcards</h1>
+		</header>
+
+		<main id="app-main">
+			<aside aria-labelledby="decks-heading">
+				<h2 id="decks-heading">Decks</h2>
+				<nav id="deck-list" aria-label="Flashcard decks">
+				</nav>
+				<p id="no-decks" class="empty-state" role="status" hidden>No decks yet. Add a deck to start studying.</p>
+				<div id="deck-actions" aria-label="Deck actions">
+					<button type="button" id="new-deck">New Deck</button>
+					<button type="button" id="edit-deck" disabled>Edit Deck</button>
+					<button type="button" id="delete-deck" disabled>Delete Deck</button>
+				</div>
+			</aside>
+
+			<section aria-labelledby="study-heading">
+				<h2 id="study-heading">Study</h2>
+				<div id="card-toolbar" role="toolbar" aria-label="Flashcard tools">
+					<label for="card-search">Search</label>
+					<input id="card-search" type="search" placeholder="Search this deck">
+					<button type="button" id="shuffle-cards">Shuffle</button>
+					<button type="button" id="new-card">New Card</button>
+				</div>
+				<article aria-label="Flashcard. Press Space to flip; use the left and right arrow keys to navigate." tabindex="0">
+					<div id="study-card" class="card">
+						<div class="card-face card-front">
+							<p id="card-front" aria-live="polite">
+								<span id="card-empty-state" class="empty-state" role="status" hidden></span>
+								<span id="card-front-content">Your flashcard will appear here.</span>
+							</p>
+						</div>
+						<div class="card-face card-back" aria-hidden="true">
+							<p id="card-back-content"></p>
+						</div>
+					</div>
+				</article>
+				<nav aria-label="Flashcard navigation">
+					<button type="button" id="previous-card">Previous</button>
+					<button type="button" id="flip-card">Flip card</button>
+					<button type="button" id="next-card">Next</button>
+				</nav>
+				<p id="card-count" aria-live="polite">Card 0 of 0</p>
+				<p class="keyboard-hint">Keyboard: Space flips · ← Previous · → Next</p>
+				<p id="storage-message" role="status" aria-live="polite" hidden></p>
+				<div id="card-actions" aria-label="Card actions">
+					<button type="button" data-action="edit-card">Edit Card</button>
+					<button type="button" data-action="delete-card">Delete Card</button>
+				</div>
+			</section>
+		</main>
+
+		<dialog id="card-dialog" aria-labelledby="card-dialog-title">
+			<form id="card-form">
+				<h2 id="card-dialog-title">New Card</h2>
+				<label for="card-form-front">Front</label>
+				<textarea id="card-form-front" name="front" required aria-describedby="card-form-error"></textarea>
+				<label for="card-form-back">Back</label>
+				<textarea id="card-form-back" name="back" required aria-describedby="card-form-error"></textarea>
+				<p id="card-form-error" class="form-error" role="alert" aria-live="assertive" hidden></p>
+				<div class="dialog-actions">
+					<button type="button" id="cancel-card">Cancel</button>
+					<button type="submit">Save Card</button>
+				</div>
+			</form>
+		</dialog>
+
+		<dialog id="deck-dialog" aria-labelledby="deck-dialog-title">
+			<form id="deck-form">
+				<h2 id="deck-dialog-title">New Deck</h2>
+				<label for="deck-name">Deck name</label>
+				<input id="deck-name" name="deckName" type="text" maxlength="60" required aria-describedby="deck-form-error">
+				<p id="deck-form-error" class="form-error" role="alert" aria-live="assertive" hidden></p>
+				<div class="dialog-actions">
+					<button type="button" id="cancel-deck">Cancel</button>
+					<button type="submit">Save Deck</button>
+				</div>
+			</form>
+		</dialog>
+	</body>
+</html>
